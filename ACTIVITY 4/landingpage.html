@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff0f6">
+    <title>Ribbon &amp; Blue | Pretty Things, Thoughtfully Made</title>
+    <style>
+        :root {
+            --pink: #e875a5;
+            --pink-dark: #b74b78;
+            --pink-light: #fff0f6;
+            --blue: #4385cf;
+            --blue-dark: #3269a9;
+            --blue-light: #eaf4ff;
+            --ink: #303954;
+            --muted: #737d94;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: linear-gradient(135deg, #fff8fb, #eef7ff);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 15px max(24px, calc((100% - 1100px) / 2));
+            border-bottom: 1px solid rgba(67, 133, 207, 0.12);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            color: var(--pink);
+            font-size: 1.25rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        nav a:hover {
+            color: var(--pink-dark);
+        }
+
+        nav .nav-cta {
+            padding: 10px 17px;
+            border-radius: 999px;
+            background: var(--blue);
+            color: white;
+        }
+
+        nav .nav-cta:hover {
+            background: var(--blue-dark);
+            color: white;
+        }
+
+        main {
+            width: min(1100px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            align-items: center;
+            gap: 50px;
+            min-height: 570px;
+            padding: 64px 0;
+        }
+
+        .ribbon-tag {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 9px 16px;
+            border-radius: 999px 999px 999px 4px;
+            background: var(--pink-light);
+            color: var(--pink-dark);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            max-width: 570px;
+            margin: 0 0 18px;
+            color: var(--blue);
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            line-height: 1.04;
+        }
+
+        h1 span {
+            color: var(--pink);
+        }
+
+        .hero-copy p {
+            max-width: 490px;
+            margin: 0 0 28px;
+            color: var(--muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .primary-link {
+            display: inline-block;
+            padding: 14px 22px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--pink), var(--blue));
+            box-shadow: 0 9px 22px rgba(94, 116, 180, 0.2);
+            color: white;
+            font-weight: 700;
+        }
+
+        .primary-link:hover {
+            filter: brightness(1.06);
+        }
+
+        .hero-art {
+            position: relative;
+            display: grid;
+            min-height: 370px;
+            overflow: hidden;
+            border: 1px solid white;
+            border-radius: 46% 46% 30px 30px;
+            background: linear-gradient(150deg, #ffe1ed, #dceeff);
+            box-shadow: 0 22px 50px rgba(76, 96, 150, 0.14);
+            place-items: center;
+        }
+
+        .hero-bow {
+            z-index: 1;
+            font-size: clamp(9rem, 22vw, 15rem);
+            line-height: 1;
+            filter: drop-shadow(0 12px 10px rgba(64, 75, 115, 0.12));
+        }
+
+        .sparkle {
+            position: absolute;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .sparkle-one {
+            top: 22%;
+            left: 15%;
+        }
+
+        .sparkle-two {
+            right: 12%;
+            bottom: 22%;
+            color: var(--blue);
+        }
+
+        .section {
+            padding: 68px 0;
+            scroll-margin-top: 80px;
+        }
+
+        .section h2 {
+            margin: 0 0 12px;
+            color: var(--blue);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            text-align: center;
+        }
+
+        .section-intro {
+            margin: 0 auto 32px;
+            color: var(--muted);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 26px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 12px 28px rgba(76, 96, 150, 0.09);
+        }
+
+        .card-icon {
+            display: grid;
+            width: 70px;
+            height: 70px;
+            margin-bottom: 17px;
+            border-radius: 22px;
+            background: var(--pink-light);
+            font-size: 2.3rem;
+            place-items: center;
+        }
+
+        .card:nth-child(2n) .card-icon {
+            background: var(--blue-light);
+        }
+
+        .card h3 {
+            margin: 0 0 9px;
+            color: var(--pink-dark);
+            font-size: 1.15rem;
+        }
+
+        .card p {
+            margin: 0 0 15px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .card-link {
+            color: var(--blue-dark);
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .blog-card {
+            padding: 0 0 22px;
+            overflow: hidden;
+        }
+
+        .blog-art {
+            display: grid;
+            min-height: 145px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffe1ed, #dceeff);
+            font-size: 3.5rem;
+            place-items: center;
+        }
+
+        .blog-card h3,
+        .blog-card p,
+        .blog-card .card-link {
+            margin-right: 22px;
+            margin-left: 22px;
+        }
+
+        .welcome-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin: 28px 0 76px;
+            padding: 30px;
+            border-radius: 22px;
+            background: linear-gradient(110deg, #ffe4ef, #e6f2ff);
+        }
+
+        .welcome-banner h2 {
+            margin: 0 0 8px;
+            color: var(--blue);
+        }
+
+        .welcome-banner p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .welcome-bow {
+            flex: 0 0 auto;
+            color: var(--pink);
+            font-size: 3.8rem;
+        }
+
+        footer {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.82);
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 14px 20px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 18px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 34px;
+                padding: 52px 0;
+            }
+
+            .hero-copy {
+                text-align: center;
+            }
+
+            .hero-copy p {
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .hero-art {
+                min-height: 300px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 420px) {
+            main {
+                width: calc(100% - 32px);
+            }
+
+            nav {
+                gap: 14px;
+                font-size: 0.9rem;
+            }
+
+            .welcome-banner {
+                padding: 24px 20px;
+            }
+
+            .welcome-bow {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="#home">Ribbon <span>&amp;</span> Blue</a>
+        <nav aria-label="Main menu">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#blogs">Blogs</a>
+            <a class="nav-cta" href="#services">Explore</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <span class="ribbon-tag">A little sparkle, tied with love</span>
+                <h1 id="hero-title">Make every day a little more <span>lovely.</span></h1>
+                <p>Welcome to Ribbon &amp; Blue, a cheerful corner for thoughtful gifts, pretty ribbons, and creative inspiration in sweet shades of pink and blue.</p>
+                <a class="primary-link" href="#services">Explore our services</a>
+            </div>
+            <div class="hero-art" role="img" aria-label="A cute pink ribbon surrounded by sparkles on a pink and blue background">
+                <span class="sparkle sparkle-one" aria-hidden="true">✦</span>
+                <span class="hero-bow" aria-hidden="true">🎀</span>
+                <span class="sparkle sparkle-two" aria-hidden="true">✧</span>
+            </div>
+        </section>
+
+        <section class="section" id="services" aria-labelledby="services-title">
+            <h2 id="services-title">Our sweet services</h2>
+            <p class="section-intro">Little details that make your special moments feel extra lovely.</p>
+            <div class="card-grid">
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">🎁</div>
+                    <h3>Gift wrapping</h3>
+                    <p>Make every present feel special with colorful paper, soft ribbons, and thoughtful finishing touches.</p>
+                    <a class="card-link" href="#contact">Discover more &rarr;</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">🎀</div>
+                    <h3>Custom ribbons</h3>
+                    <p>Find a bow for every occasion, from dainty everyday bows to decorations made just for you.</p>
+                    <a class="card-link" href="#contact">Discover more &rarr;</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">💌</div>
+                    <h3>Party styling</h3>
+                    <p>Add a little pink-and-blue magic to birthdays, celebrations, and happy get-togethers.</p>
+                    <a class="card-link" href="#contact">Discover more &rarr;</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="blogs" aria-labelledby="blogs-title">
+            <h2 id="blogs-title">From our little blog</h2>
+            <p class="section-intro">Ideas, inspiration, and happy little ways to get creative.</p>
+            <div class="card-grid">
+                <article class="card blog-card">
+                    <div class="blog-art" aria-hidden="true">🎀</div>
+                    <h3>How to tie a picture-perfect bow</h3>
+                    <p>A simple guide to adding the finishing ribbon to gifts and decorations.</p>
+                    <a class="card-link" href="#contact">Read the story &rarr;</a>
+                </article>
+                <article class="card blog-card">
+                    <div class="blog-art" aria-hidden="true">🌷</div>
+                    <h3>Pretty pink and blue party ideas</h3>
+                    <p>Bring a soft, cheerful color palette to your next special day.</p>
+                    <a class="card-link" href="#contact">Read the story &rarr;</a>
+                </article>
+                <article class="card blog-card">
+                    <div class="blog-art" aria-hidden="true">✨</div>
+                    <h3>Small details, happy memories</h3>
+                    <p>Thoughtful little touches that make celebrations feel like yours.</p>
+                    <a class="card-link" href="#contact">Read the story &rarr;</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="welcome-banner" id="contact" aria-labelledby="welcome-title">
+            <div>
+                <h2 id="welcome-title">Let's make something lovely!</h2>
+                <p>Thanks for stopping by our pink-and-blue corner. We hope you leave feeling inspired.</p>
+            </div>
+            <span class="welcome-bow" aria-hidden="true">🎀</span>
+        </section>
+    </main>
+
+    <footer>Made with love, ribbons, and a little pink-and-blue magic. 🎀</footer>
+</body>
+</html>

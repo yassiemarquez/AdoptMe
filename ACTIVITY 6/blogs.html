@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff0f6">
+    <title>Adoption Journal | Paws &amp; Home</title>
+    <style>
+        :root {
+            --pink: #e875a5;
+            --pink-dark: #b74b78;
+            --pink-light: #fff0f6;
+            --blue: #4385cf;
+            --blue-dark: #3269a9;
+            --blue-light: #eaf4ff;
+            --ink: #303954;
+            --muted: #737d94;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background: linear-gradient(135deg, #fff8fb, #eef7ff);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 15px max(24px, calc((100% - 1080px) / 2));
+            border-bottom: 1px solid rgba(67, 133, 207, 0.12);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            color: var(--pink);
+            font-size: 1.2rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        nav a:hover,
+        .article-link:hover {
+            color: var(--pink-dark);
+        }
+
+        nav .nav-cta {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: var(--blue);
+            color: white;
+        }
+
+        nav .nav-cta:hover {
+            background: var(--blue-dark);
+            color: white;
+        }
+
+        main {
+            width: min(1080px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            align-items: center;
+            gap: 40px;
+            margin: 36px 0 54px;
+            padding: 38px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 28px;
+            background: linear-gradient(125deg, #ffe5ef 0%, #f1e9f7 50%, #dceeff 100%);
+            box-shadow: 0 18px 42px rgba(76, 96, 150, 0.12);
+        }
+
+        .ribbon-tag {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 9px 15px;
+            border-radius: 999px 999px 999px 4px;
+            background: rgba(255, 255, 255, 0.78);
+            color: var(--pink-dark);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            color: var(--blue-dark);
+            font-size: clamp(2.5rem, 5.5vw, 4rem);
+            line-height: 1.08;
+        }
+
+        h1 span {
+            color: var(--pink-dark);
+        }
+
+        .hero-copy p {
+            max-width: 500px;
+            margin: 0 0 23px;
+            color: #555f79;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .primary-link {
+            display: inline-block;
+            padding: 13px 20px;
+            border-radius: 12px;
+            background: linear-gradient(100deg, var(--pink), var(--blue));
+            box-shadow: 0 8px 18px rgba(76, 96, 150, 0.18);
+            color: white;
+            font-weight: 700;
+        }
+
+        .primary-link:hover {
+            filter: brightness(1.06);
+        }
+
+        .hero-photo {
+            position: relative;
+            min-height: 300px;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            border-radius: 28px 82px 28px 28px;
+            background: linear-gradient(135deg, #f5a9c5, #a9d1f4);
+            box-shadow: 0 16px 34px rgba(65, 83, 132, 0.18);
+        }
+
+        .hero-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            position: absolute;
+            right: 13px;
+            bottom: 13px;
+            left: 13px;
+            width: fit-content;
+            max-width: calc(100% - 26px);
+            margin: 0;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--ink);
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+
+        .featured {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: center;
+            gap: 28px;
+            margin-bottom: 55px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            background: linear-gradient(110deg, #ffe5ef, #e6f2ff);
+            scroll-margin-top: 100px;
+        }
+
+        .featured-art {
+            display: grid;
+            min-height: 220px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.72);
+            font-size: 5rem;
+            place-items: center;
+        }
+
+        .category {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: var(--pink-dark);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .featured h2 {
+            margin: 0 0 10px;
+            color: var(--blue-dark);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.25;
+        }
+
+        .featured p,
+        .blog-card p {
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .featured p {
+            margin: 0 0 16px;
+        }
+
+        .article-link {
+            color: var(--blue-dark);
+            font-weight: 700;
+        }
+
+        .section-title {
+            margin: 0 0 22px;
+            color: var(--blue-dark);
+            font-size: clamp(1.7rem, 4vw, 2.2rem);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-bottom: 68px;
+        }
+
+        .blog-card {
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 12px 28px rgba(76, 96, 150, 0.09);
+        }
+
+        .card-art {
+            display: grid;
+            min-height: 145px;
+            background: var(--pink-light);
+            font-size: 3.7rem;
+            place-items: center;
+        }
+
+        .blog-card:nth-child(2) .card-art {
+            background: var(--blue-light);
+        }
+
+        .blog-card:nth-child(3) .card-art {
+            background: linear-gradient(135deg, #ffe5ef, #e6f2ff);
+        }
+
+        .card-copy {
+            padding: 21px;
+        }
+
+        .card-copy h3 {
+            margin: 0 0 9px;
+            color: var(--blue-dark);
+            font-size: 1.15rem;
+            line-height: 1.4;
+        }
+
+        .card-copy p {
+            margin: 0;
+        }
+
+        .note {
+            margin-bottom: 68px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.82);
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .note p {
+            margin: 0;
+        }
+
+        footer {
+            padding: 22px;
+            background: rgba(255, 255, 255, 0.82);
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 14px 20px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .hero,
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                gap: 26px;
+                padding: 28px;
+            }
+
+            .hero-copy {
+                text-align: center;
+            }
+
+            .hero-copy p {
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .hero-photo,
+            .hero-photo img {
+                min-height: 260px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 420px) {
+            main {
+                width: calc(100% - 32px);
+            }
+
+            nav {
+                gap: 12px;
+                font-size: 0.88rem;
+            }
+
+            .hero {
+                margin-top: 20px;
+                padding: 22px 18px;
+            }
+
+            .featured {
+                padding: 18px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="home.html">Paws <span>&amp;</span> Home</a>
+        <nav aria-label="Main menu">
+            <a href="home.html">Home</a>
+            <a href="landingpage.html#adopt">Adoption</a>
+            <a href="services.html">Services</a>
+            <a class="nav-cta" href="#latest">Read the blog</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="page-title">
+            <div class="hero-copy">
+                <span class="ribbon-tag">Stories for thoughtful adopters</span>
+                <h1 id="page-title">A little reading. <span>A lot of heart.</span></h1>
+                <p>Explore general tips and ideas for preparing to adopt an animal. Every animal and organization is different, so check with a local shelter for advice that fits your situation.</p>
+                <a class="primary-link" href="#latest">Explore the articles</a>
+            </div>
+            <div class="hero-photo">
+                <img src="images%20(1).jpg" alt="A dog resting in a grassy meadow">
+                <p class="photo-caption">Illustrative photo, not a current adoption listing.</p>
+            </div>
+        </section>
+
+        <article class="featured" id="featured">
+            <div class="featured-art" aria-hidden="true">🏡💗</div>
+            <div class="featured-copy">
+                <span class="category">Getting ready</span>
+                <h2>Preparing to welcome an adopted animal</h2>
+                <p>Before adopting, think about your household, daily routine, and the time and resources you can offer. Ask the organization about the animal’s known needs and what to expect during its transition.</p>
+                <a class="article-link" href="#read-first">Read the preparation notes &darr;</a>
+            </div>
+        </article>
+
+        <section id="latest" aria-labelledby="latest-title">
+            <h2 class="section-title" id="latest-title">More adoption notes</h2>
+            <div class="blog-grid">
+                <article class="blog-card" id="read-first">
+                    <div class="card-art" aria-hidden="true">💬</div>
+                    <div class="card-copy">
+                        <span class="category">Questions to ask</span>
+                        <h3>What to discuss with a local shelter</h3>
+                        <p>Ask about the animal’s known routine and needs, the adoption steps, and any details the organization can share.</p>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="card-art" aria-hidden="true">🧺</div>
+                    <div class="card-copy">
+                        <span class="category">Home preparation</span>
+                        <h3>Making space for a new companion</h3>
+                        <p>Plan for a safe, calm place at home, and ask the shelter what setup may suit the animal you are considering.</p>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="card-art" aria-hidden="true">🩺</div>
+                    <div class="card-copy">
+                        <span class="category">Ongoing care</span>
+                        <h3>Planning for care after adoption</h3>
+                        <p>Talk with the shelter and a veterinary professional about the individual animal’s care needs.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <aside class="note">
+            <p>These articles offer general information, not veterinary advice or details about a specific shelter. Adoption availability, requirements, and animal needs vary; contact a local organization for current guidance.</p>
+        </aside>
+    </main>
+
+    <footer>Learn about adoption with care. The hero image is illustrative and does not represent a current listing.</footer>
+</body>
+</html>

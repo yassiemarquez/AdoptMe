@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff0f6">
+    <title>Paws &amp; Home | Animal Adoption</title>
+    <style>
+        :root {
+            --pink: #e875a5;
+            --pink-light: #fff0f6;
+            --blue: #4385cf;
+            --blue-light: #eaf4ff;
+            --ink: #303954;
+            --muted: #737d94;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background: linear-gradient(135deg, #fff8fb, #eef7ff);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 16px max(24px, calc((100% - 1050px) / 2));
+            border-bottom: 1px solid rgba(67, 133, 207, 0.12);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            color: var(--pink);
+            font-size: 1.2rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        nav a:hover {
+            color: var(--pink);
+        }
+
+        nav .nav-cta {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: var(--blue);
+            color: white;
+        }
+
+        main {
+            width: min(1050px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 0.85fr;
+            align-items: center;
+            gap: 48px;
+            min-height: 550px;
+            padding: 64px 0;
+        }
+
+        .welcome-tag {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 9px 15px;
+            border-radius: 999px 999px 999px 4px;
+            background: var(--pink-light);
+            color: #b74b78;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            color: var(--blue);
+            font-size: clamp(2.8rem, 6vw, 4.6rem);
+            line-height: 1.04;
+        }
+
+        h1 span {
+            color: var(--pink);
+        }
+
+        .hero p {
+            max-width: 480px;
+            margin: 0 0 26px;
+            color: var(--muted);
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        .primary-link {
+            display: inline-block;
+            padding: 13px 21px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--pink), var(--blue));
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 9px 22px rgba(94, 116, 180, 0.18);
+        }
+
+        .primary-link:hover {
+            filter: brightness(1.06);
+        }
+
+        .hero-photo {
+            position: relative;
+            overflow: hidden;
+            min-height: 360px;
+            border: 6px solid rgba(255, 255, 255, 0.9);
+            border-radius: 38px 100px 38px 38px;
+            background: linear-gradient(135deg, #f5a9c5, #a9d1f4 55%, #d4b7ec);
+            box-shadow: 0 20px 48px rgba(76, 96, 150, 0.18);
+        }
+
+        .hero-photo::after {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(232, 117, 165, 0.12), transparent 50%, rgba(67, 133, 207, 0.16));
+            content: "";
+        }
+
+        .hero-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 360px;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            left: 14px;
+            width: fit-content;
+            max-width: calc(100% - 28px);
+            margin: 0;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--ink);
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+
+        .adoption-section {
+            padding: 20px 0 64px;
+            scroll-margin-top: 90px;
+        }
+
+        .adoption-section h2 {
+            margin: 0 0 12px;
+            color: var(--blue);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            text-align: center;
+        }
+
+        .section-intro {
+            max-width: 650px;
+            margin: 0 auto 28px;
+            color: var(--muted);
+            line-height: 1.65;
+            text-align: center;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .guide-card {
+            padding: 24px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 12px 28px rgba(76, 96, 150, 0.09);
+        }
+
+        .guide-icon {
+            display: grid;
+            width: 58px;
+            height: 58px;
+            margin-bottom: 15px;
+            border-radius: 18px;
+            background: var(--pink-light);
+            font-size: 1.8rem;
+            place-items: center;
+        }
+
+        .guide-card:nth-child(2) .guide-icon {
+            background: var(--blue-light);
+        }
+
+        .guide-card h3 {
+            margin: 0 0 9px;
+            color: var(--blue);
+            font-size: 1.15rem;
+        }
+
+        .guide-card p {
+            margin: 0 0 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .guide-card a {
+            color: #3269a9;
+            font-weight: 700;
+        }
+
+        .disclaimer {
+            margin: 26px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        footer {
+            padding: 22px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            .site-header {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 14px 20px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 48px 0;
+            }
+
+            .hero-copy {
+                text-align: center;
+            }
+
+            .hero p {
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .hero-photo,
+            .hero-photo img {
+                min-height: 300px;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 420px) {
+            main {
+                width: calc(100% - 32px);
+            }
+
+            nav {
+                gap: 12px;
+                font-size: 0.88rem;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="#home">Paws <span>&amp;</span> Home</a>
+        <nav aria-label="Main menu">
+            <a href="#home">Home</a>
+            <a href="#adoption">Adoption</a>
+            <a href="services.html">Services</a>
+            <a class="nav-cta" href="landingpage.html#adopt">Explore adoption</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home" aria-labelledby="welcome-title">
+            <div class="hero-copy">
+                <span class="welcome-tag">A kind new beginning starts here</span>
+                <h1 id="welcome-title">A loving home can make a <span>difference.</span></h1>
+                <p>Thinking about adopting an animal? Learn how to prepare, what to ask a local shelter, and where to find guidance for your next steps.</p>
+                <a class="primary-link" href="landingpage.html#adopt">Explore adoption</a>
+            </div>
+            <div class="hero-photo">
+                <img src="images%20(2).jpg" alt="Cats and dogs together against a pink background">
+                <p class="photo-caption">Illustrative photo, not a live adoption listing.</p>
+            </div>
+        </section>
+
+        <section class="adoption-section" id="adoption" aria-labelledby="adoption-title">
+            <h2 id="adoption-title">Start with a thoughtful plan</h2>
+            <p class="section-intro">Every animal and adoption process is different. These general steps can help you prepare to speak with a shelter or rescue organization.</p>
+            <div class="guide-grid">
+                <article class="guide-card">
+                    <span class="guide-icon" aria-hidden="true">🏡</span>
+                    <h3>Prepare your home</h3>
+                    <p>Consider your household, daily routine, and the time and resources you can offer an animal.</p>
+                    <a href="services.html">See preparation guides &rarr;</a>
+                </article>
+                <article class="guide-card">
+                    <span class="guide-icon" aria-hidden="true">💬</span>
+                    <h3>Talk with a shelter</h3>
+                    <p>Ask about animals currently available, their known needs, and the organization’s adoption steps.</p>
+                    <a href="landingpage.html#adopt">Learn about adoption &rarr;</a>
+                </article>
+                <article class="guide-card">
+                    <span class="guide-icon" aria-hidden="true">💗</span>
+                    <h3>Plan for ongoing care</h3>
+                    <p>Ask the shelter and a veterinary professional about care needs for the animal you are considering.</p>
+                    <a href="landingpage.html#process">View the general process &rarr;</a>
+                </article>
+            </div>
+            <p class="disclaimer">This page is general information, not a shelter or adoption listing. Availability and requirements vary; contact a local organization for current details.</p>
+        </section>
+    </main>
+
+    <footer>Explore adoption with care. The photo is illustrative and does not represent a current listing.</footer>
+</body>
+</html>

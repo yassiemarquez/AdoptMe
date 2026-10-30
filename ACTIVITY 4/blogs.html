@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff0f6">
+    <title>Cat Tales | Ribbon &amp; Whiskers</title>
+    <style>
+        :root {
+            --pink: #e875a5;
+            --pink-light: #fff0f6;
+            --blue: #4385cf;
+            --blue-light: #eaf4ff;
+            --ink: #303954;
+            --muted: #737d94;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background: linear-gradient(135deg, #fff8fb, #eef7ff);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 16px max(24px, calc((100% - 1080px) / 2));
+            border-bottom: 1px solid rgba(67, 133, 207, 0.12);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .brand {
+            color: var(--pink);
+            font-size: 1.2rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        nav a:hover,
+        .article-link:hover {
+            color: var(--pink);
+        }
+
+        nav .nav-cta {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: var(--blue);
+            color: white;
+        }
+
+        main {
+            width: min(1080px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .page-heading {
+            position: relative;
+            padding: 68px 20px 40px;
+            text-align: center;
+        }
+
+        .ribbon-tag {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 9px 15px;
+            border-radius: 999px 999px 999px 4px;
+            background: var(--pink-light);
+            color: #b74b78;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            color: var(--blue);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+        }
+
+        h1 span {
+            color: var(--pink);
+        }
+
+        .page-heading p {
+            max-width: 620px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .heading-bow {
+            position: absolute;
+            top: 50px;
+            right: 8%;
+            color: var(--pink);
+            font-size: 3rem;
+            transform: rotate(12deg);
+        }
+
+        .featured {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: center;
+            gap: 28px;
+            margin-bottom: 56px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            background: linear-gradient(110deg, #ffe5ef, #e6f2ff);
+        }
+
+        .featured-art {
+            display: grid;
+            min-height: 230px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.72);
+            font-size: 7rem;
+            place-items: center;
+        }
+
+        .featured-copy .category {
+            color: #b74b78;
+        }
+
+        .category {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: var(--blue);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .featured h2 {
+            margin: 0 0 10px;
+            color: var(--blue);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.25;
+        }
+
+        .featured p,
+        .blog-card p {
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .featured p {
+            margin: 0 0 16px;
+        }
+
+        .article-link {
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .section-title {
+            margin: 0 0 22px;
+            color: var(--blue);
+            font-size: 1.8rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-bottom: 72px;
+        }
+
+        .blog-card {
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 12px 28px rgba(76, 96, 150, 0.09);
+        }
+
+        .card-art {
+            display: grid;
+            min-height: 155px;
+            background: var(--pink-light);
+            font-size: 4.5rem;
+            place-items: center;
+        }
+
+        .blog-card:nth-child(2) .card-art {
+            background: var(--blue-light);
+        }
+
+        .blog-card:nth-child(3) .card-art {
+            background: linear-gradient(135deg, #ffe5ef, #e6f2ff);
+        }
+
+        .card-copy {
+            padding: 22px;
+        }
+
+        .card-copy h3 {
+            margin: 0 0 9px;
+            color: var(--blue);
+            font-size: 1.2rem;
+            line-height: 1.35;
+        }
+
+        .card-copy p {
+            margin: 0;
+        }
+
+        footer {
+            padding: 22px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 14px 20px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .heading-bow {
+                top: 20px;
+                right: 4%;
+                font-size: 2.4rem;
+            }
+
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-art {
+                min-height: 190px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 420px) {
+            main {
+                width: calc(100% - 32px);
+            }
+
+            nav {
+                gap: 12px;
+                font-size: 0.88rem;
+            }
+
+            .page-heading {
+                padding: 60px 4px 34px;
+            }
+
+            .featured {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="#top">Ribbon <span>&amp;</span> Whiskers</a>
+        <nav aria-label="Main menu">
+            <a href="#top">Home</a>
+            <a href="#featured">Featured</a>
+            <a class="nav-cta" href="#latest">Cat tales</a>
+        </nav>
+    </header>
+
+    <main id="top">
+        <section class="page-heading" aria-labelledby="page-title">
+            <span class="ribbon-tag">Stories for curious cat lovers</span>
+            <span class="heading-bow" aria-hidden="true">🎀</span>
+            <h1 id="page-title">The <span>cat tales</span> blog</h1>
+            <p>Get comfy and explore sweet stories, helpful tips, and little moments inspired by our favorite furry friends.</p>
+        </section>
+
+        <article class="featured" id="featured">
+            <div class="featured-art" role="img" aria-label="A smiling cat with a ribbon">😺🎀</div>
+            <div class="featured-copy">
+                <span class="category">Featured story</span>
+                <h2>Making a new kitty feel at home</h2>
+                <p>A calm welcome can make all the difference. Prepare a cozy resting spot, offer fresh water, and give your new friend time to explore at their own pace.</p>
+                <a class="article-link" href="#welcome-tips">Read the welcome tips ↓</a>
+            </div>
+        </article>
+
+        <section id="latest" aria-labelledby="latest-title">
+            <h2 class="section-title" id="latest-title">A few more cozy reads</h2>
+            <div class="blog-grid">
+                <article class="blog-card" id="welcome-tips">
+                    <div class="card-art" role="img" aria-label="A paw print">🐾</div>
+                    <div class="card-copy">
+                        <span class="category">Cat care</span>
+                        <h3>Little ways to make your cat feel loved</h3>
+                        <p>Try gentle play, a quiet cuddle spot, and a little time together every day.</p>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="card-art" role="img" aria-label="A ball of yarn">🧶</div>
+                    <div class="card-copy">
+                        <span class="category">Playtime</span>
+                        <h3>Turn an ordinary afternoon into playtime</h3>
+                        <p>Simple games and safe toys can keep curious paws busy and happy.</p>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="card-art" role="img" aria-label="A pink bow">🎀</div>
+                    <div class="card-copy">
+                        <span class="category">Cozy moments</span>
+                        <h3>Make a sweet little corner for your kitty</h3>
+                        <p>A soft blanket and a peaceful nook can become a favorite place to nap.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>Made with love, whiskers, and a little pink-and-blue magic. 🐾</footer>
+</body>
+</html>
